@@ -1,0 +1,82 @@
+object Form9: TForm9
+  Left = 537
+  Top = 384
+  Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+  ClientHeight = 140
+  ClientWidth = 380
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 24
+    Top = 8
+    Width = 348
+    Height = 65
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 12
+      Top = 22
+      Width = 86
+      Height = 18
+      Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Edit1: TEdit
+      Left = 104
+      Top = 21
+      Width = 233
+      Height = 21
+      BevelKind = bkSoft
+      BorderStyle = bsNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Roboto Lt'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1085#1077#1086#1073#1093#1086#1076#1080#1084#1086#1077' '#1082#1086#1083#1080#1095#1077#1090#1089#1090#1074#1086
+    end
+  end
+  object Panel2: TPanel
+    Left = 138
+    Top = 79
+    Width = 231
+    Height = 50
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 1
+    object Button1: TButton
+      Left = 16
+      Top = 8
+      Width = 89
+      Height = 33
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 128
+      Top = 8
+      Width = 89
+      Height = 33
+      Caption = #1047#1072#1082#1088#1099#1090#1100
+      TabOrder = 1
+      OnClick = Button2Click
+    end
+  end
+end

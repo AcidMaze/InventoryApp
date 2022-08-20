@@ -1,0 +1,140 @@
+unit AddItem;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
+  System.ImageList, Vcl.ImgList, Vcl.ExtDlgs, DB, ADODB, JPEG;
+
+type
+  TForm3 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Button1: TButton;
+    Button2: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label4: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    RichEdit1: TRichEdit;
+    Button3: TButton;
+    ImageList1: TImageList;
+    ComboBox1: TComboBox;
+    OpenPictureDialog1: TOpenPictureDialog;
+    Image1: TImage;
+    procedure Button2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+uses  DM, Sklad;
+
+
+{$R *.dfm}
+
+procedure TForm3.Button1Click(Sender: TObject);
+var today : TDateTime;
+var JPG: TJPEGImage;
+    blob: TStream;
+begin
+  today := Now;
+  if (Length(Edit1.Text) = 0) then
+  begin
+    ShowMessage('Ошибка! Введите корректное название предмета.');
+    exit;
+  end;
+  if (Edit2.Text = '0') or (Length(Edit2.Text) = 0) or (Pos(' ',Edit2.Text) > 0) or (Pos('-',Edit2.Text) > 0) then
+  begin
+    ShowMessage('Ошибка! Количество не может равняться нулю или быть отрицательным.');
+    exit;
+  end;
+  if (Length(Edit3.Text) = 0) or (Pos(' ',Edit3.Text) > 0) or (Pos('-',Edit3.Text) > 0) then
+  begin
+    ShowMessage('Ошибка! Введите корректную цену.');
+    exit;
+  end;
+  if (Length(Edit4.Text) = 0) then
+  begin
+    ShowMessage('Ошибка! Введите корректное название производителя.');
+    exit;
+  end;
+  DataModule2.DS_ItemsList.DataSet.Append;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('type').Value:= ComboBox1.ItemIndex+1;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('name').Value:= Edit1.Text;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('ammount').Value:= Edit2.Text;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('price').Value:= Edit3.Text;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('producer').Value:= Edit4.Text;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('params').Value:= RichEdit1.Text;
+  DataModule2.DS_ItemsList.DataSet.FieldByname('date').Value:= today;
+  DataModule2.DS_ItemsList.DataSet.Post;
+  if Image1.Picture.Graphic <> nil then
+  begin
+    JPG:= TJPEGImage.Create;
+    try
+      JPG.Assign(Image1.Picture.Graphic);
+      DataModule2.DS_ItemsList.DataSet.Edit;
+      blob := DM.DataModule2.DS_ItemsList.DataSet.CreateBlobStream(DataModule2.DS_ItemsList.DataSet.FieldByname('image'), bmWrite);
+      try
+        JPG.SaveToStream(blob);
+      finally
+        blob.Free;
+      end;
+    finally
+       JPG.Free;
+    end;
+  end;
+  ShowMessage(Edit1.Text + ' успешно добавлен(а) на склад. Количество: ' +Edit2.Text+'шт.');
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  RichEdit1.Clear;
+  ComboBox1.ClearSelection;
+  Form3.Close;
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+begin
+  Form3.Close;
+end;
+
+
+
+procedure TForm3.Button3Click(Sender: TObject);
+
+begin
+  if OpenPictureDialog1.Execute and
+  FileExists(OpenPictureDialog1.FileName) then
+  begin
+    Button3.Visible := false;
+    Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+  end;
+end;
+
+
+
+procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Button3.Visible := true;
+  Form2.Enabled := true;
+end;
+
+
+
+end.

@@ -1,0 +1,56 @@
+object Form8: TForm8
+  Left = 0
+  Top = 0
+  Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1088#1077#1076#1084#1077#1090' '#1074' '#1082#1072#1073#1080#1085#1077#1090
+  ClientHeight = 312
+  ClientWidth = 679
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 8
+    Top = 24
+    Width = 663
+    Height = 241
+    TabOrder = 0
+    object CRDBGrid1: TCRDBGrid
+      Left = 8
+      Top = 8
+      Width = 409
+      Height = 225
+      Color = clBtnFace
+      DataSource = DataModule2.DS_ItemsList
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Roboto Cn'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+    object DBImage1: TDBImage
+      Left = 495
+      Top = 8
+      Width = 160
+      Height = 160
+      BorderStyle = bsNone
+      DataField = 'image'
+      DataSource = DataModule2.DS_ItemsList
+      Stretch = True
+      TabOrder = 1
+    end
+  end
+end

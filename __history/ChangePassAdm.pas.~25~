@@ -1,0 +1,58 @@
+﻿unit ChangePassAdm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm13 = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    LabeledEdit3: TLabeledEdit;
+    Button1: TButton;
+    ImageList1: TImageList;
+    procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form13: TForm13;
+
+implementation
+
+{$R *.dfm}
+
+uses AdminPanel, DM, MainMenu;
+
+procedure TForm13.Button1Click(Sender: TObject);
+var myLookup: Variant;
+begin
+  myLookup := DataModule2.Admin.Lookup('password',LabeledEdit1.Text,'password');
+  if VarType(myLookup) = varNull then
+  begin
+    ShowMessage('❎ Неверный пароль!');
+    exit;
+  end
+  else if VarType(myLookup) = varString then
+  begin
+    if True then
+
+    Form13.Close;
+  end;
+end;
+
+procedure TForm13.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form11.Enabled := true;
+end;
+
+end.

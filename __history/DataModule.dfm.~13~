@@ -1,0 +1,25 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 406
+  Width = 492
+  object MyConnection1: TMyConnection
+    Database = 'school_inv'
+    Username = 'root'
+    Server = '127.0.0.1'
+    Connected = True
+    Left = 152
+    Top = 96
+  end
+  object MyTable1: TMyTable
+    TableName = 'items'
+    Connection = MyConnection1
+    Active = True
+    Left = 120
+    Top = 216
+  end
+  object MyDataSource1: TMyDataSource
+    DataSet = MyTable1
+    Left = 240
+    Top = 216
+  end
+end

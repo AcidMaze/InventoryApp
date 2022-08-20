@@ -1,0 +1,18 @@
+object Form12: TForm12
+  Left = 537
+  Top = 219
+  Caption = #1040#1074#1090#1086#1088#1080#1079#1072#1094#1080#1103
+  ClientHeight = 344
+  ClientWidth = 447
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+end

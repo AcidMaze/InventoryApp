@@ -1,0 +1,61 @@
+unit AddUser;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm16 = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    Button1: TButton;
+    ImageList1: TImageList;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form16: TForm16;
+
+implementation
+uses AdminPanel, DM;
+
+{$R *.dfm}
+
+procedure TForm16.Button1Click(Sender: TObject);
+begin
+  if (Length(LabeledEdit1.Text) = 0) or
+  (Length(LabeledEdit2.Text) = 0) or
+  (Pos(' ',LabeledEdit1.Text) > 0) or
+  (Pos(' ',LabeledEdit2.Text) > 0) then
+  begin
+    ShowMessage('Ошибка! Поля ввода пусты или содержат пробелы.');
+    exit;
+  end;
+  DataModule2.DS_User.DataSet.Append;
+  DataModule2.DS_User.DataSet.FieldByname('login').Value:= LabeledEdit1.Text;
+  DataModule2.DS_User.DataSet.FieldByname('password').Value:= LabeledEdit2.Text;
+  DataModule2.DS_User.DataSet.FieldByname('addAccess').Value:= 0;
+  DataModule2.DS_User.DataSet.FieldByname('editAccess').Value:= 0;
+  DataModule2.DS_User.DataSet.FieldByname('deleteAccess').Value:= 0;
+  DataModule2.DS_User.DataSet.FieldByname('printsaveAccess').Value:= 0;
+  DataModule2.DS_User.DataSet.Post;
+  ShowMessage('Пользователь успешно добавлен. Логин: ' +LabeledEdit1.Text+ ' Пароль: ' +LabeledEdit2.Text);
+  Form16.Close;
+end;
+
+procedure TForm16.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form11.Enabled := true;
+end;
+
+end.

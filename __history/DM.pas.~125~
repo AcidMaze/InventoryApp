@@ -1,0 +1,73 @@
+unit DM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, Data.DB,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet, Data.DBXMySQL, Data.SqlExpr, DBAccess,
+  MyAccess, MemDS, VirtualTable, Datasnap.Provider;
+
+type
+  TDataModule2 = class(TDataModule)
+    Connection: TMyConnection;
+    ItemsList: TMyTable;
+    DS_ItemsList: TMyDataSource;
+    CabinetList: TMyTable;
+    DS_CabinetList: TMyDataSource;
+    ItemsInCab: TMyTable;
+    DS_ItemInCab: TMyDataSource;
+    ShowCabItem_Query: TMyQuery;
+    DS_ShowCabItem: TMyDataSource;
+    RemoveItemList: TMyTable;
+    DS_RemoveItemList: TMyDataSource;
+    ItemRemove_Query: TMyQuery;
+    DS_ShowRemoveItem: TMyDataSource;
+    ShowRemoveItem_Query: TMyQuery;
+    Admin: TMyTable;
+    DS_Admin: TMyDataSource;
+    DS_User: TMyDataSource;
+    User: TMyTable;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule2: TDataModule2;
+  procedure ShowCabinetItem();
+  procedure ShowRemoveItem();
+
+implementation
+uses Cabinets;
+{$R *.dfm}
+procedure ShowCabinetItem();
+begin
+  with DM.DataModule2.ShowCabItem_Query do
+  begin
+    Active := false;
+    SQL.Clear;
+    SQL.Text := 'SELECT * FROM items RIGHT JOIN items_incabinet ON items.id = items_incabinet.idItem WHERE items_incabinet.idCab =' + QuotedStr(IntToStr(DataModule2.DS_CabinetList.DataSet['id']));
+    Active:= true;
+  end;
+end;
+
+procedure ShowRemoveItem();
+begin
+  with DM.DataModule2.ShowRemoveItem_Query do
+  begin
+    Active := false;
+    SQL.Clear;
+    SQL.Text := 'SELECT * FROM items RIGHT JOIN remove_item ON items.id = remove_item.idItem WHERE 1';
+    Active:= true;
+  end;
+end;
+
+
+end.
+
+

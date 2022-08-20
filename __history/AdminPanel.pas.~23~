@@ -1,0 +1,84 @@
+unit AdminPanel;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.ExtCtrls, Vcl.StdCtrls, System.UITypes;
+
+type
+  TForm11 = class(TForm)
+    Panel1: TPanel;
+    ImageList1: TImageList;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button7: TButton;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form11: TForm11;
+
+implementation
+
+{$R *.dfm}
+
+uses MainMenu, ChangePassAdm, AddUser, DeleteUser, UserAcces;
+
+procedure TForm11.Button2Click(Sender: TObject);
+begin
+  Form18.Show;
+  Form11.Enabled := false;
+end;
+
+procedure TForm11.Button3Click(Sender: TObject);
+begin
+  Form13.Show;
+  Form11.Enabled := false;
+end;
+
+procedure TForm11.Button4Click(Sender: TObject);
+var userResponse: integer;
+begin
+  userResponse := MessageDlg('Вы действительно хотите выйти из аккаунта администратора?', mtConfirmation, [mbYes, mbNo], 0);
+  case userResponse of
+    mrYes:
+    begin
+      gAdmin := false;
+      Form11.Close;
+    end;
+    mrNo: exit;
+  end;
+end;
+
+procedure TForm11.Button5Click(Sender: TObject);
+begin
+  Form16.Show;
+  Form11.Enabled := false;
+end;
+
+procedure TForm11.Button7Click(Sender: TObject);
+begin
+  Form17.Show;
+  Form11.Enabled := false;
+end;
+
+procedure TForm11.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form1.Enabled := true;
+end;
+
+end.

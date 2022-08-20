@@ -1,0 +1,22 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 297
+  Width = 435
+  object FDConnection1: TFDConnection
+    ConnectionName = 'MySQL_Connection'
+    Params.Strings = (
+      'Server=127.0.0.1'
+      'User_Name=root'
+      'Database=school_inv'
+      'DriverID=MySQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 320
+    Top = 96
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'D:\'#1058#1077#1093#1085#1072#1088#1100' '#1046#1077#1082#1072' '#1055#1050#1057'17\'#1044#1080#1087#1083#1086#1084'\'#1055#1088#1086#1075#1088#1072#1084#1084#1072'\libmysql.dll'
+    Left = 88
+    Top = 72
+  end
+end

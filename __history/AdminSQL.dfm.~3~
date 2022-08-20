@@ -1,0 +1,36 @@
+object Form19: TForm19
+  Left = 439
+  Top = 274
+  Caption = 'SQL '#1079#1072#1087#1088#1086#1089
+  ClientHeight = 234
+  ClientWidth = 452
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 8
+    Top = 8
+    Width = 436
+    Height = 193
+    Color = clBtnHighlight
+    ParentBackground = False
+    TabOrder = 0
+    object Memo1: TMemo
+      Left = 8
+      Top = 8
+      Width = 409
+      Height = 169
+      Lines.Strings = (
+        'Memo1')
+      TabOrder = 0
+    end
+  end
+end

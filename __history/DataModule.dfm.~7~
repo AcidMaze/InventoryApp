@@ -1,0 +1,24 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 297
+  Width = 435
+  object SQLConnection1: TSQLConnection
+    ConnectionName = 'MySQLConnection'
+    DriverName = 'MySQL'
+    Params.Strings = (
+      'DriverName=MySQL'
+      'HostName=127.0.0.1'
+      'Database=school_inv'
+      'User_Name=root'
+      'Password='
+      'ServerCharSet='
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'ConnectTimeout=60')
+    Left = 320
+    Top = 120
+  end
+end
